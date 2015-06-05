@@ -1,0 +1,43 @@
+/* Simple & quick spark API client */
+
+var SparkAPI = namespace('SparkAPI');
+
+SparkAPI.setAccessToken = function(access_token) {
+  this['access_token'] = access_token;
+}
+SparkAPI.setUserAgent = function(user_agent) {
+  this['user_agent'] = user_agent;
+}
+SparkAPI.setDomain = function(domain) {
+  if ( domain == "development" )
+    this['domain_name'] = "https://api.dev.fbsdata.com";
+  else if ( domain == "production" )
+    this['domain_name'] = "https://sparkapi.com";
+  else
+    this['domain_name'] = domain;
+}
+SparkAPI.fetchJSON = function(url) {
+  try {
+    if ( this['domain_name'] )
+      url = this['domain_name'] + url;
+    var request = new XMLHttpRequest();
+    request.open('GET', url, false);
+    if (this['access_token'] )
+      request.setRequestHeader('Authorization', 'OAuth ' + this['access_token']);
+    request.setRequestHeader('X-SparkApi-User-Agent', this['user_agent'] || "OIDC Demo");
+    request.send(null);
+
+    if (request.status === 200) {
+      return request.responseText;
+    } else
+      throw new Error("fetchJSON - " + request.status + ' ' + request.statusText);
+
+  }
+  catch(e) {
+    throw new Error('Unable to retrieve JSON file at ' + url + ' : ' + e.toString());
+  }
+  return null;
+};
+SparkAPI.fetchObject = function(url) {
+  JSON.parse( this.fetchJSON(url) );
+}

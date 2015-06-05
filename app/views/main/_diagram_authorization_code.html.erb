@@ -1,0 +1,51 @@
+<div class="col-xs-10">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <strong class="panel-title">Authorization Code Flow Diagram</strong>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-3 zero-pad-right" id="flow_legend">
+          <img src="/assets/oidc_authorization_code_legend.png" class='img-responsive'>
+        </div>
+        <div class="col-xs-9 zero-pad-left" id="flow_diagram">
+          <img src="/assets/oidc_authorization_code.png" class='img-responsive'>
+        </div>
+      </div> <!-- row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <ol class="alpha-list">
+            <li>Client Web Browser requests the API Consumer site</li>
+            <ol class="alpha-list">
+              <li>Member chooses a login provider</li>
+              <li>OpenID Connect client discovers the Provider's endpoints</li>
+            </ol>
+
+            <li>Client Web Browser sends the client_id and redirect_uri 
+            to the Provider's authorization endpoint</li>
+            <ol class="alpha-list">
+              <li>Member provides username/password</li>
+              <li>Member authorizes API Consumer access to data</li>
+            </ol>
+
+            <li>OIDC Provider responds with an Authorization Code
+            to the Client Web Browser</li>
+
+            <li>Client Web Browser sends the Authorization Code
+            to the API Consumer</li>
+
+            <li>The API Consumer uses the Authorization Code to request
+            an ID Token, Access Token, and/or Refresh Token</li>
+
+            <li>The API Consumer uses the Access Token to retrieve:</li>
+            <ol class="alpha-list">
+              <li>Additional User Info Claims from the OIDC provider</li>
+              <li>OData API requests against RETS Web API</li>
+              <li>Uses the Refresh Token to request another Access Token if expired</li>
+            </ol>
+        </div>
+      </div>
+    </div>
+  </div> <!-- panel -->
+</div> <!-- flow column -->
+
