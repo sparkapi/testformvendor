@@ -1,2 +1,12 @@
-# testformvendor
+# TestFormVendor
 Rails app that runs the TestFormVendor.com OpenID Connect Sample app
+
+## OpenID Connect Relying Party Walkthrough
+
+A few files are noteworthy in checking out for wring your own RP application:
+
+* [Main Controller](https://github.com/sparkapi/testformvendor/blob/master/app/controllers/main_controller.rb) -- Authorization Code flow happens here
+* [Index View](https://github.com/sparkapi/testformvendor/blob/master/app/views/main/index.html.erb) -- Sets up the log in event for a chosen OIDC Provider
+* [Callback View](https://github.com/sparkapi/testformvendor/blob/master/app/views/main/callback.html.erb) -- The callback for OIDC.  This has two separate views.  One using the javascript lib for Implicit and Hybrid flows, and one displaying server-side controller variables when using Authorization Code
+
+
