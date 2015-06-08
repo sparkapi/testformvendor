@@ -4,11 +4,13 @@
       $(document).ready(function() {
           // Restore configuration information from sessionStorage
           OIDC.restoreInfo();
-          var token, code, id_token, user_info;
+          var token, code, id_token, user_info, issuer;
 
           // Get ID Token: Returns ID Token if valid, else error. 
           try {
             id_token = OIDC.getValidIdToken();
+            var payload_obj = OIDC.getIdTokenPayload(id_token);
+            issuer = payload_obj['iss']; 
             // make it look nicer for viewing
             var pretty = JSON.stringify( 
               OIDC.getIdTokenPayload(id_token),
