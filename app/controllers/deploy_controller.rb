@@ -5,5 +5,6 @@ class DeployController < ApplicationController
     logger.info `git pull origin master`
     logger.info `bundle install`
     logger.info `touch #{Rails.root}/tmp/restart.txt`
+    render json: {}
   end
 end
