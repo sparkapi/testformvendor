@@ -17,7 +17,7 @@ A few files are noteworthy in checking out for wring your own RP application:
 
 * Set up the SQLite DB
 
-`$ bundle exec rake db:setup db:migrate`
+`$ bundle exec rake db:migrate`
 
 * Add a user for yourself
 
