@@ -66,6 +66,31 @@ var getExpiresIn = function() {
   return null;
 }
 
+var load_buttons = function(endpoint, selector) {
+  $.get(endpoint, function(data) {
+    for ( var i = 0 ; i < data.length ; i++ )
+    {
+      var provider = data[i]; 
+      providers[ provider["name"] ] = {
+        'client_id': provider["client_id"],
+        'redirect_uri': provider["redirect_uri"],
+        // seems like most discovery endpoints don't do CORS.  :(
+        //'provider': provider["provider"]
+        'provider_info': {
+          'issuer': provider["issuer"],
+          'authorization_endpoint': provider["authorization_endpoint"],
+          'jwks_uri': provider["jwks_uri"],
+          'userinfo_endpoint': provider["userinfo_endpoint"]
+        },
+        // internal database ID for this custom defined provider
+        'provider_id': provider["id"]  
+      };
+      var $button = $("<button onClick=\"login('" + provider["name"] + "')\">Sign in with " + provider["name"] + "</button>");
+      $button.addClass('btn btn-primary');
+      $button.appendTo( $(selector) );
+    }
+  });
+}
 $(document).ready(function() {
   check_flow();
   /* Monitor for check changes and update the Flow text

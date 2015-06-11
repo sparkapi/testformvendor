@@ -18,7 +18,8 @@
 *~
 *.kate-swp
 vendor/bundle
-/db/*
+/db/*sqlite3
+/db/schema.rb
 test/coverage
 test/reports
 public/r

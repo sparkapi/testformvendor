@@ -1,0 +1,13 @@
+<div class="body-container">
+  <div class="container-fluid">
+
+<p id="notice"><%= notice %></p>
+<% if flash[:error] %>
+  <div class="alert alert-danger">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+<%= render @provider %>
+
+</div>
+</div>

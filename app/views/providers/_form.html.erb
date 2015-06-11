@@ -1,0 +1,127 @@
+<%= form_for(@provider) do |f| %>
+  <% if @provider.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@provider.errors.count, "error") %> prohibited this Provider from being saved:</h2>
+
+      <ul>
+      <% @provider.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= f.label :name, "Provider Name" %><br>
+        <%= f.text_field :name, class: "form-control" %>
+        <span>A short name to call this Provider</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :provider, "Provider URL" %><br>
+        <%= f.text_field :provider, class: "form-control" %>
+        <span>The OIDC Provider's base URL. Ex: <code>https://accounts.google.com</code>, <code>https://connect-op.herokuapp.com</code></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :client_id, "Client ID" %><br>
+        <%= f.text_field :client_id, class: "form-control" %>
+        <span>The OAuth2 client_id registered at the Provider<span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :client_secret, "Client Secret" %><br>
+        <%= f.text_field :client_secret, class: "form-control" %>
+        <span>The OAuth2 client_secret registered at the Provider<span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :redirect_uri, "Redirect URI" %><br>
+        <%= f.text_field :redirect_uri, class: "form-control" %>
+        <span>Redirect URI should be set to this site's callback URL</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group">
+        <%= f.label :public, "Post this Provider to the public TestFormVendor site? " %>
+        <%= f.check_box :public %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+      <h4>If this Provider's Discovery Endpoint does not support CORS requests,
+        you may specify the OIDC endpoints manually below</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :issuer, "Issuer (optional)" %><br>
+        <%= f.text_field :issuer, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :authorization_endpoint, "Authroization Endpoint (optional)" %><br>
+        <%= f.text_field :authorization_endpoint, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :jwks_uri, "JWKS URI (optional)" %><br>
+        <%= f.text_field :jwks_uri, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :userinfo_endpoint, "UserInfo Endpoint (optional)" %><br>
+        <%= f.text_field :userinfo_endpoint, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-1">
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-1">
+      <%= link_to "Cancel", providers_path, class: "btn btn-default" %>
+    </div>
+  </div>
+
+<% end %>

@@ -31,6 +31,14 @@
           $button.addClass('btn btn-primary');
           $button.appendTo( $("#buttons") );
         }
+        /* After populating the two example buttons, load the community
+         * public Providers from RESO members
+         */
+        load_buttons("/public_providers.json", "#public-buttons");
+        <% if session[:user] %> 
+        /* Load my private providers */
+        load_buttons("/providers.json?private_only=true", "#my-buttons");
+        <% end %>
     });
     /* login() is called when a Provider button is clicked.
      * 
@@ -56,7 +64,9 @@
       // so the server-side knows which provider we picked
       if ( response_type === "code" )
         Cookies.set('issuer', provider_info['issuer']);
-
+      // Using a custom defined RESO Member Provider
+      if ( provider_settings['provider_id'] )
+        Cookies.set('provider_id', provider_settings['provider_id']);
       // redirect to login!
       OIDC.login({
           'response_type': response_type
@@ -65,12 +75,9 @@
 
   </script>
 <% end %>
-<div class="page-header">
-  <h1>Test Form Vendor <small>An OpenID Connect Demo</small></h1>
-</div>
 
+<div class="body-container">
 <div class="container-fluid">
-
   <div class="row">
     <div class="col-sm-4 checks">
     <div class="row"><b>Check the response_types desired</b></div>
@@ -94,9 +101,32 @@
         </div>
       </div> <!-- panel -->
     </div> <!-- flow column -->
-
   </div>  <!-- row -->
-  <div class="row" id=buttons></div>
-</div> <!-- container -->
 
+  <div class="row">
+    <div class="col-sm-3">
+      <h4>Demo Providers</h4>
+    </div>
+    <div class="col-sm-3">
+      <h4>RESO Member Providers</h4>
+    </div>
+    <% if session[:user] %> 
+    <div class="col-sm-3">
+      <h4>My Private Providers</h4>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3" id="buttons">
+    </div>
+    <div class="col-sm-3" id="public-buttons">
+    </div>
+    <% if session[:user] %> 
+      <div class="col-sm-4" id="my-buttons">
+      </div>
+    <% end %>
+  </div>
+</div> <!-- container -->
+</div> <!-- body-container -->
 

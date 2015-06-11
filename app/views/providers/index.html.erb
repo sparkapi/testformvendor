@@ -1,0 +1,15 @@
+
+<div class="body-container">
+  <p id="notice"><%= notice %></p>
+  <div class="container-fluid">
+    <h2>My Providers</h2>
+
+    <% if @providers.size > 5 %>
+      <%= render partial: "new_button" %>  
+    <% end %>
+    <% @providers.each do |provider| %>
+      <%= render provider %> 
+    <% end %>
+    <%= render partial: "new_button" %>  
+  </div> <!-- container -->
+</div> <!-- body -->

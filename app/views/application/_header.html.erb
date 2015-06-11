@@ -1,0 +1,20 @@
+<div class="body-container">
+<div class="page-header">
+  <div class="row">
+    <div class="col-sm-9">
+      <% if content_for?(:page_header) %>
+        <%= yield :page_header %>
+      <% else %>
+        <h1>Test Form Vendor
+          <small>An OpenID Connect Demo</small>
+        </h1>
+      <% end %>
+    </div>
+    <div class="col-sm-3">
+      <% if ! session[:user] %>
+        <a href="/login" role="button" class="btn btn-default">RESO Member Log In</a>
+      <% end %>
+  </div>
+  </div>
+</div>
+</div>

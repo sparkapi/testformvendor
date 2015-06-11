@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a class="navbar-brand" href="#" onClick='window.location.assign("<%= request.base_url %>")' ><%= session[:user]["fullname"] %></a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li><a href="/providers">My Providers</a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li><a href="/public_providers">Public Providers</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout" role="button">Log Out</a></li>
+    </ul>
+  </div>
+</nav>

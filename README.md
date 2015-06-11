@@ -9,4 +9,20 @@ A few files are noteworthy in checking out for wring your own RP application:
 * [Index View](https://github.com/sparkapi/testformvendor/blob/master/app/views/main/index.html.erb) -- Sets up the log in event for a chosen OIDC Provider
 * [Callback View](https://github.com/sparkapi/testformvendor/blob/master/app/views/main/callback.html.erb) -- The callback for OIDC.  This has two separate views.  One using the javascript lib for Implicit and Hybrid flows, and one displaying server-side controller variables when using Authorization Code
 
+## Running this app locally
+
+* Install gems:
+
+`$ bundle install`
+
+* Set up the SQLite DB
+
+`$ bundle exec rake db:setup db:migrate`
+
+* Add a user for yourself
+
+`$ bundle exec rake "create:user[my@email.com,My Name,passw0rd]`
+
+(If you do not specify a password, one will be randomly generated and printed)
+
 

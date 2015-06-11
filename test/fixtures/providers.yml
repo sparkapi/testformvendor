@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  public: false
+  client_id: MyString
+  redirect_uri: MyString
+  provider: MyString
+  issuer: MyString
+  authorization_endpoint: MyString
+  jwks_uri: MyString
+  userinfo_endpoint: MyString
+
+two:
+  user_id: 
+  public: false
+  client_id: MyString
+  redirect_uri: MyString
+  provider: MyString
+  issuer: MyString
+  authorization_endpoint: MyString
+  jwks_uri: MyString
+  userinfo_endpoint: MyString

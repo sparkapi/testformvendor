@@ -1,7 +1,8 @@
 class MainController < ApplicationController
   protect_from_forgery with: :null_session, only: [:properties]
   def index
-    reset_session
+    @public_providers = Provider.where(public: true)
+    reset_tokens
   end
 
   def callback
@@ -28,6 +29,18 @@ class MainController < ApplicationController
 
   private
 
+  def reset_tokens
+    [:id_token, 
+     :access_token, 
+     :refresh_token,
+     :userinfo,
+     :expires_in].each do |key|
+      session.delete(key)
+    end
+    cookies.delete('issuer')
+    cookies.delete('provider_id')
+  end
+
   def discover_provider(issuer)
     @provider_info = OpenIDConnect::Discovery::Provider::Config.discover!(issuer)
     logger.debug "issuer discovery #{issuer} => #{@provider_info.inspect}"
@@ -36,7 +49,12 @@ class MainController < ApplicationController
   # Perform the authorization code token exchange with the
   # OIDC Provider's token endpoint
   def authorization_code_flow
-    key_info = KEY_CONFIG[ @provider_info.issuer ]
+    logger.debug "cookie provider_id: #{cookies["provider_id"]}"
+    if cookies["provider_id"]
+      key_info = Provider.where(id: cookies["provider_id"]).first
+    else
+      key_info = KEY_CONFIG[ @provider_info.issuer ]
+    end
     logger.debug "key info: #{key_info.inspect}"
     # Hit the token endpoint and save the returned access/refresh/id tokens
     tokens = token_call(
@@ -148,4 +166,5 @@ class MainController < ApplicationController
       end
     end
   end
+  
 end

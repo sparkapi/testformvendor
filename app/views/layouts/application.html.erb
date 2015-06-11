@@ -8,7 +8,10 @@
   <%= yield :head %>
 </head>
 <body>
-
+<% if session[:user] %>
+  <%= render partial: "navbar" %>
+<% end %>
+<%= render partial: "header" %>
 <%= yield %>
 
 </body>

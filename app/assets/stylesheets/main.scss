@@ -7,6 +7,9 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  //margin: 0px 30px !important;
+}
+.body-container {
   margin: 0px 30px !important;
 }
 .page-header {
@@ -22,6 +25,9 @@ body {
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+nav {
+  //margin: 0px 0px !important;
 }
 h1 {
   margin-bottom: 20px;

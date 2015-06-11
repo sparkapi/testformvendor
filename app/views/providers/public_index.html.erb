@@ -1,0 +1,11 @@
+
+<div class="body-container">
+  <p id="notice"><%= notice %></p>
+  <div class="container-fluid">
+    <h2>All Public Providers</h2>
+
+    <% @providers.each do |provider| %>
+      <%= render provider %> 
+    <% end %>
+  </div> <!-- container -->
+</div> <!-- body -->

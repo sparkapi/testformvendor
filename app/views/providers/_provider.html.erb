@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-8">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <strong class="panel-title"><%= provider.name %>
+          <% if provider.public %>
+              - Public
+          <% else %>
+              - Private
+          <% end %>
+        </strong>
+        <% if provider.user_id == session[:user]["id"] %>
+        <div class="pull-right panel-title">
+          <%= link_to edit_provider_path(provider), class: "panel-title" do %>
+            <span class="glyphicon glyphicon-edit"/>
+          <% end %>
+          <%= link_to provider,
+              method: :delete,
+              data: { confirm: 'Are you sure you want to delete this?' } do %>
+                <span class="glyphicon glyphicon-trash"/>
+          <% end %>
+        </div>
+        <% end %>
+      </div> <!-- panel-heading -->
+      <div class="panel-body">
+        <strong>Provider URL:</strong><pre><%= provider.provider %></pre>
+        <strong>Redirect URI:</strong><pre><%= provider.redirect_uri %></pre>
+        <strong>Client ID:</strong><pre><%= provider.client_id %></pre>
+        <strong>Client Secret:</strong><pre><%= provider.client_secret %></pre>
+        <% unless provider.issuer.blank? %>
+          <strong>Issuer:</strong><pre><%= provider.issuer %></pre>
+        <% end %>
+        <% unless provider.authorization_endpoint.blank? %>
+          <strong>Authorization Endpoint:</strong><pre><%= provider.authorization_endpoint %></pre>
+        <% end %>
+        <% unless provider.jwks_uri.blank? %>
+          <strong>JWKS URI:</strong><pre><%= provider.jwks_uri %></pre>
+        <% end %>
+        <% unless provider.userinfo_endpoint.blank? %>
+          <strong>UserInfo Endpoint:</strong><pre><%= provider.userinfo_endpoint %></pre>
+        <% end %>
+      </div> <!-- panel body -->
+    </div> <!-- panel -->
+  </div> <!-- col -->
+</div> <!-- row -->
