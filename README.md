@@ -21,8 +21,24 @@ A few files are noteworthy in checking out for wring your own RP application:
 
 * Add a user for yourself
 
-`$ bundle exec rake "create:user[my@email.com,My Name,passw0rd]`
+`$ bundle exec rake "user:create[my@email.com,My Name,passw0rd]"`
 
 (If you do not specify a password, one will be randomly generated and printed)
+
+* Run a local rails server
+
+`$ bundle exec rails server`
+
+* Point your web browser to http://localhost:3000/
+* Have Fun!!!
+
+## Submitting Patches
+
+* Fork the [testformvendor](https://github.com/sparkapi/testformvendor) repo
+* Create a feature branch in your local clone
+* Submit a pull request
+
+
+
 
 
