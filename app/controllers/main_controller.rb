@@ -82,6 +82,7 @@ class MainController < ApplicationController
   # Make a call to the specified userinfo endpoint and
   # return a nested hash of claims
   def userinfo_call
+    return nil unless session[:access_token]
     c = Curl::Easy.new(@provider_info.userinfo_endpoint)
     c.resolve_mode = :ipv4
     c.headers = { authorization: "Bearer #{session[:access_token]}" }
