@@ -145,7 +145,7 @@ class MainController < ApplicationController
   # Using the Spark API gem, grab some properties
   def spark_properties_call
     begin
-      configure_sparkapi_client
+      configure_spark_api_client
       access_token = params[:access_token] || session[:access_token]
       if access_token
         expires = (session[:expires_in] || params[:expires_in] || 3600).to_i
