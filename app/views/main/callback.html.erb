@@ -59,7 +59,9 @@
            */
           try
           {
-            if ( issuer == "https://openidp.fbsdata.com" )
+            if ( issuer == "https://openidp.fbsdata.com" 
+              || issuer == "https://sparkplatform.com"
+            )
             {
               // expires_in parameter in the URL
               var expires_in = getExpiresIn();
