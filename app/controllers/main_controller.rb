@@ -145,6 +145,7 @@ class MainController < ApplicationController
   # Using the Spark API gem, grab some properties
   def spark_properties_call
     begin
+      configure_sparkapi_client
       access_token = params[:access_token] || session[:access_token]
       if access_token
         expires = (session[:expires_in] || params[:expires_in] || 3600).to_i
@@ -173,5 +174,20 @@ class MainController < ApplicationController
       end
     end
   end
-  
+
+  # This is only needed to demo both dev & prod Spark API calls 
+  def configure_spark_api_client
+    key_info = KEY_CONFIG[ @provider_info.issuer ]
+    SparkApi.configure do |config|
+      config.authentication_mode = SparkApi::Authentication::OAuth2
+      config.api_key      = key_info["client_id"]
+      config.api_secret   = key_info["client_secret"]
+      config.callback     = key_info["redirect_uri"]
+      if @provider_info.issuer =~ /fbsdata\.com$/
+        config.auth_endpoint = "https://dev.sparkplatform.com/oauth2"
+        config.endpoint   = 'https://api.dev.fbsdata.com'
+        config.ssl_verify = false
+      end
+    end
+  end 
 end
