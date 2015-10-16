@@ -69,7 +69,8 @@
         Cookies.set('provider_id', provider_settings['provider_id']);
       // redirect to login!
       OIDC.login({
-          'response_type': response_type
+          'response_type': response_type,
+          'scope': 'openid profile email address phone'
       }); 
     }
 
