@@ -68,6 +68,10 @@ class MainController < ApplicationController
     )
     logger.debug "tokens: #{tokens.inspect}"
     return nil if ! tokens
+    if tokens[:error]
+      session[:id_token] = "Error: #{tokens[:error]} => #{tokens[:error_description]}"
+      return nil
+    end
     session[:id_token] = decode_id_token(tokens[:id_token])
     session[:access_token] = tokens[:access_token]
     session[:refresh_token] = tokens[:refresh_token]
