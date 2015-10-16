@@ -25,6 +25,8 @@ class MainController < ApplicationController
 
   # Display a partial diagram for AJAX calls
   def diagram
+    @flow = params[:flow]
+    render layout: "diagram"
   end
 
   private
