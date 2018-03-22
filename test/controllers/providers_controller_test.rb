@@ -3,6 +3,7 @@ require 'test_helper'
 class ProvidersControllerTest < ActionController::TestCase
   setup do
     @provider = providers(:one)
+    session[:user] = users(:one)
   end
 
   test "should get index" do
