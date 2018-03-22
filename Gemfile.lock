@@ -89,12 +89,12 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     mini_mime (1.0.0)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.7.8)
     multipart-post (2.0.0)
-    nokogiri (1.6.8.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
     openid_connect (0.8.3)
       activemodel
       attr_required (>= 0.0.5)
@@ -219,6 +219,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   multi_json (= 1.7.8)
+  nokogiri (~> 1.8.1)
   openid_connect
   rails (~> 4.2.1)
   sass-rails (~> 5.0)
@@ -232,7 +233,7 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 RUBY VERSION
-   ruby 2.0.0p648
+   ruby 2.4.2p198
 
 BUNDLED WITH
    1.16.1

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.4.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.1'
@@ -47,3 +47,4 @@ gem 'spark_api'
 gem 'multi_json', '1.7.8'
 gem 'curb'
 gem 'openid_connect'
+gem 'nokogiri', '~> 1.8.1'
